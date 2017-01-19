@@ -1,8 +1,7 @@
 #ifndef DP
 #define DP
 
-#include <bits/stdc++.h>
-using namespace std;
+#include "headers.h"
 
 class dp{
     private:

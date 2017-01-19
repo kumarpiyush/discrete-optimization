@@ -1,5 +1,4 @@
 #include "dp.h"
-#define ll long long int
 
 dp::dp(int _n, int _k, vector<int> &_w, vector<int> &_v) : W(_w), V(_v) {
     n=_n;

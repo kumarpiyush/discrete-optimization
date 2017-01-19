@@ -1,5 +1,4 @@
 #include "bb.h"
-#define ll long long int
 
 bb::bb(int _n, int _k, vector<int> &_w, vector<int> &_v) : W(_w), V(_v) {
     n=_n;
@@ -12,6 +11,10 @@ pair<int,vector<bool>> bb::solve(){
     for(int i=0;i<n;i++){
         in_bag.push_back(false);
     }
+
+    ll bound=estimate_bound();
+
+    start_time=clock();
 
     return make_pair(val, in_bag);
 }
@@ -40,5 +43,5 @@ ll bb::estimate_bound(){
         }
     }
 
-    return (0.5+ret);
+    return (0.5+ret);   // round up
 }

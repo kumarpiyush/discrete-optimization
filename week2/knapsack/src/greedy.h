@@ -1,8 +1,7 @@
 #ifndef GREEDY
 #define GREEDY
 
-#include <bits/stdc++.h>
-using namespace std;
+#include "headers.h"
 
 class greedy{
     private:

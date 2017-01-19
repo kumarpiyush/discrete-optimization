@@ -1,10 +1,7 @@
 #ifndef BB
 #define BB
 
-#include <bits/stdc++.h>
-using namespace std;
-
-#define ll long long int
+#include "headers.h"
 
 // branch and bound
 class bb{
@@ -13,11 +10,13 @@ class bb{
         vector<bool> in_bag;
         vector<int> &W,&V;
 
+        double allowed_time=10000000;   // 10 seconds
+        double start_time;
+
+        ll estimate_bound();
+
     public:
         bb(int _n, int _k, vector<int> &_w, vector<int> &_v);
         pair<int,vector<bool>> solve();
-
-    private:
-        ll estimate_bound();
 };
 #endif
