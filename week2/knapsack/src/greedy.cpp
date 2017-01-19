@@ -5,7 +5,7 @@ greedy::greedy(int _n, int _k, vector<int> &_w, vector<int> &_v) : W(_w), V(_v) 
     k=_k;
 }
 
-pair<int,vector<int>> greedy::solve(){
+pair<int,vector<bool>> greedy::solve(){
     int val=0;
 
     for(int i=0;i<n;i++){

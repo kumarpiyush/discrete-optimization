@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "greedy.h"
+#include "dp.h"
 
 using namespace std;
 
@@ -18,13 +19,27 @@ int main(int args, char** argv){
         V.push_back(x);
     }
 
-    greedy g(n,k,W,V);
+    dp g1(n,k,W,V);
+    greedy g2(n,k,W,V);
 
-    auto s=g.solve();
+    auto s1=g1.solve();
+    auto s2=g2.solve();
 
-    printf("%d 0\n",s.first);
+    int bst=0;
+    vector<bool> selected;
+
+    if(s1.first >= bst){
+        bst=s1.first;
+        selected=s1.second;
+    }
+    if(s2.first >= bst){
+        bst=s2.first;
+        selected=s2.second;
+    }
+
+    printf("%d 0\n",bst);
     for(int i=0;i<n;i++){
-        printf("%d ",s.second[i]);
+        cout<<selected[i]<<" ";
     }
     printf("\n");
 }
