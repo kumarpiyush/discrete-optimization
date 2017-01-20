@@ -62,7 +62,7 @@ void bb::branch(int nd, int sack_space_left, ll earned_money){
 
     double optimistic_guess=estimate_bound(nd,sack_space_left)+earned_money;
 
-    if(optimistic_guess < 1.000 * bst_val){
+    if(optimistic_guess < 1.001 * bst_val){
         // no way man
         return;
     }
