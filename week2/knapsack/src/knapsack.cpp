@@ -22,7 +22,7 @@ int main(int args, char** argv){
 
     auto s1=g1.solve();
 
-    int bst=0;
+    ll bst=0;
     vector<bool> selected;
 
     if(s1.first >= bst){
@@ -30,7 +30,7 @@ int main(int args, char** argv){
         selected=s1.second;
     }
 
-    printf("%d 0\n",bst);
+    cout<<bst<<" 0\n";
     for(int i=0;i<n;i++){
         cout<<selected[i]<<" ";
     }
