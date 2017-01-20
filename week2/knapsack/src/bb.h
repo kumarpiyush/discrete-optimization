@@ -11,7 +11,7 @@ class bb{
         vector<int> &W,&V;
         vector<int> shuffler;
 
-        double allowed_time=60 * 1000 * 1000;   // in microseconds
+        double allowed_time=600 * 1000 * 1000;   // in microseconds
         double start_time;
 
         ll bst_val;
