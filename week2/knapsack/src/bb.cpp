@@ -62,16 +62,16 @@ void bb::branch(int nd, int sack_space_left, ll earned_money){
 
     double optimistic_guess=estimate_bound(nd,sack_space_left)+earned_money;
 
-    if(optimistic_guess < 1.05 * bst_val){
+    if(optimistic_guess < 1.000 * bst_val){
         // no way man
         return;
     }
+
+    in_bag_right_now[shuffler[nd]]=false;
+    branch(nd+1,sack_space_left,earned_money);
 
     if(sack_space_left >= W[shuffler[nd]]){
         in_bag_right_now[shuffler[nd]]=true;
         branch(nd+1,sack_space_left-W[shuffler[nd]],earned_money+V[shuffler[nd]]);
     }
-
-    in_bag_right_now[shuffler[nd]]=false;
-    branch(nd+1,sack_space_left,earned_money);
 }

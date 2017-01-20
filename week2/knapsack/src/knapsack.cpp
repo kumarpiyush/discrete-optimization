@@ -1,6 +1,7 @@
 #include "headers.h"
 #include "bb.h"
 #include "dp.h"
+#include "greedy.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ int main(int args, char** argv){
         V.push_back(x);
     }
 
-    bb g1(n,k,W,V);
+    greedy g1(n,k,W,V);
 
     auto s1=g1.solve();
 

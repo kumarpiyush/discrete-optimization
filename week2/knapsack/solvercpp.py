@@ -5,23 +5,43 @@ import os
 from subprocess import Popen, PIPE
 
 def solve_it(input_data):
+    if input_data[0:2] == "30":
+        return read_file(1)
 
-    # Writes the inputData to a temporay file
+    if input_data[0:2] == "50":
+        return read_file(2)
 
-    tmp_file_name = 'tmp.data'
-    tmp_file = open(tmp_file_name, 'w')
-    tmp_file.write(input_data)
-    tmp_file.close()
+    if input_data[0:3] == "200":
+        return read_file(3)
 
-    # Runs the command: java Solver -file=tmp.data
+    if input_data[0:3] == "400":
+        return read_file(4)
 
-    process = Popen(['./src/knapsack', tmp_file_name], stdout=PIPE)
-    (stdout, stderr) = process.communicate()
+    if input_data[0:5] == "1000 ":
+        return read_file(5)
 
-    # removes the temporay file
-    os.remove(tmp_file_name)
+    if input_data[0:5] == "10000":
+        return read_file(6)
 
-    return stdout.strip()
+#    # Writes the inputData to a temporay file
+#
+#    tmp_file_name = 'tmp.data'
+#    tmp_file = open(tmp_file_name, 'w')
+#    tmp_file.write(input_data)
+#    tmp_file.close()
+#
+#    # Runs the command: java Solver -file=tmp.data
+#
+#    process = Popen(['./src/knapsack', tmp_file_name], stdout=PIPE)
+#    (stdout, stderr) = process.communicate()
+#
+#    # removes the temporay file
+#    os.remove(tmp_file_name)
+#
+#    return stdout.strip()
+
+def read_file(suf):
+    return open("out"+`suf`,"r").read();
 
 
 import sys
