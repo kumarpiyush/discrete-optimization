@@ -21,7 +21,7 @@ int main(int args, char** argv){
         V.push_back(x);
     }
 
-    greedy g1(n,k,W,V);
+    bb g1(n,k,W,V);
 
     auto s1=g1.solve();
 
