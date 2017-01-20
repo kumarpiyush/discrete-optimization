@@ -1,9 +1,11 @@
 #include "headers.h"
 #include "bb.h"
+#include "dp.h"
 
 using namespace std;
 
 int main(int args, char** argv){
+    srand(time(0));
     freopen(argv[1],"r",stdin);
 
     int n,k;

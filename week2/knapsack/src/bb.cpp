@@ -9,33 +9,35 @@ pair<ll,vector<bool>> bb::solve(){
     for(int i=0;i<n;i++){
         in_bag.push_back(false);
         in_bag_right_now.push_back(false);
+        shuffler.push_back(i);
     }
 
-    ll bound=estimate_bound();
+    random_shuffle(shuffler.begin(),shuffler.end());
 
     bst_val=0;
     start_time=clock();
-    branch(0,bound,k,0);
+    branch(0,k,0);
 
     return make_pair(bst_val, in_bag);
 }
 
-ll bb::estimate_bound(){
-    vector<pair<double,int>> density_ind;
-    for(int i=0;i<n;i++){
-        density_ind.push_back(make_pair((double)V[i]/W[i], i));
+vector<pair<double,int>> density_ind;
+
+double bb::estimate_bound(int sp, int lft){
+    density_ind.clear();
+    for(int i=sp;i<n;i++){
+        density_ind.push_back(make_pair((double)V[shuffler[i]]/W[shuffler[i]], i));
     }
 
     sort(density_ind.begin(),density_ind.end());
     reverse(density_ind.begin(),density_ind.end());
 
-    int lft=k;
     double ret=0;
 
-    for(auto e : density_ind){
+    for(auto& e : density_ind){
         if(W[e.second] <= lft){
-            lft-=W[e.second];
-            ret+=V[e.second];
+            lft-=W[shuffler[e.second]];
+            ret+=V[shuffler[e.second]];
         }
         else{
             ret+=e.first*lft;
@@ -44,12 +46,11 @@ ll bb::estimate_bound(){
         }
     }
 
-    return (0.5+ret);   // round up
+    return ret;
 }
 
-void bb::branch(int nd, ll optimistic_guess, int sack_space_left, ll earned_money){
+void bb::branch(int nd, int sack_space_left, ll earned_money){
     if(clock()-start_time >= allowed_time) return;  // play time is over
-    cout<<nd<<endl;
 
     if(nd>=n){
         if(earned_money >= bst_val){
@@ -59,16 +60,18 @@ void bb::branch(int nd, ll optimistic_guess, int sack_space_left, ll earned_mone
         return;
     }
 
-    if(optimistic_guess < bst_val){
+    double optimistic_guess=estimate_bound(nd,sack_space_left)+earned_money;
+
+    if(optimistic_guess < 1.05 * bst_val){
         // no way man
         return;
     }
 
-    in_bag_right_now[nd]=false;
-    branch(nd+1,optimistic_guess-W[nd],sack_space_left,earned_money);
-
-    if(sack_space_left >= W[nd]){
-        in_bag_right_now[nd]=true;
-        branch(nd+1,optimistic_guess,sack_space_left-W[nd],earned_money+V[nd]);
+    if(sack_space_left >= W[shuffler[nd]]){
+        in_bag_right_now[shuffler[nd]]=true;
+        branch(nd+1,sack_space_left-W[shuffler[nd]],earned_money+V[shuffler[nd]]);
     }
+
+    in_bag_right_now[shuffler[nd]]=false;
+    branch(nd+1,sack_space_left,earned_money);
 }

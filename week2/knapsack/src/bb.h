@@ -9,15 +9,16 @@ class bb{
         int n,k;
         vector<bool> in_bag;
         vector<int> &W,&V;
+        vector<int> shuffler;
 
-        double allowed_time=10000000;   // 10 seconds
+        double allowed_time=60 * 1000 * 1000;   // in microseconds
         double start_time;
 
         ll bst_val;
         vector<bool> in_bag_right_now;
 
-        ll estimate_bound();
-        void branch(int nd, ll optimistic_guess, int sack_space_left, ll earned_money);
+        double estimate_bound(int sp, int lft);
+        void branch(int nd, int sack_space_left, ll earned_money);
 
     public:
         bb(int _n, int _k, vector<int> &_w, vector<int> &_v);
