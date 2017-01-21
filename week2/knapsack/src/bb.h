@@ -10,7 +10,7 @@ class bb{
         vector<int> &W,&V;
         vector<int> shuffler;
 
-        double allowed_time=60 * 1000 * 1000;   // in microseconds
+        double allowed_time=120 * 1000000.0;   // in microseconds
         double start_time;
 
         const double optimistic_guess_factor = 1.0001;

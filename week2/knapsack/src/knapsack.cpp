@@ -21,21 +21,23 @@ int main(int args, char** argv){
         V.push_back(x);
     }
 
-    bb g1(n,k,W,V);
-
-    auto s1=g1.solve();
-
     ll bst=0;
     vector<bool> selected;
 
-    if(s1.first >= bst){
-        bst=s1.first;
-        selected=s1.second;
-    }
+    for(int ii=0;ii<30;ii++){
+        bb g1(n,k,W,V);
 
-    cout<<bst<<" 0\n";
-    for(int i=0;i<n;i++){
-        cout<<selected[i]<<" ";
+        auto s1=g1.solve();
+
+        if(s1.first >= bst){
+            bst=s1.first;
+            selected=s1.second;
+
+            cout<<bst<<" 0\n";
+            for(int i=0;i<n;i++){
+                cout<<selected[i]<<" ";
+            }
+            printf("\n");
+        }
     }
-    printf("\n");
 }
