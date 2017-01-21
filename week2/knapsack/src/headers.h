@@ -22,10 +22,10 @@
 using namespace std;
 
 #define DB(args...) { cerr << __LINE__<< ": "; vector<string> _v = split(#args, ','); err(_v.begin(), args); }
-vector<string> split(const string& s, char c);
-void err(vector<string>::iterator it);
+extern vector<string> split(const string& s, char c);
+extern void err(vector<string>::iterator it);
 template<typename T, typename... Args>
-void err(vector<string>::iterator it, T a, Args... args);
+extern void err(vector<string>::iterator it, T a, Args... args);
 
 #define ll long long int
 #define pb push_back
