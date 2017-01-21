@@ -18,6 +18,8 @@ pair<ll,vector<bool>> bb::solve(){
     start_time=clock();
     branch(0,k,0);
 
+    greedy_extention();
+
     return make_pair(bst_val, in_bag);
 }
 
@@ -62,7 +64,7 @@ void bb::branch(int nd, int sack_space_left, ll earned_money){
 
     double optimistic_guess=estimate_bound(nd,sack_space_left)+earned_money;
 
-    if(optimistic_guess < 1.001 * bst_val){
+    if(optimistic_guess < optimistic_guess_factor * bst_val){
         // no way man
         return;
     }
@@ -73,5 +75,22 @@ void bb::branch(int nd, int sack_space_left, ll earned_money){
     if(sack_space_left >= W[shuffler[nd]]){
         in_bag_right_now[shuffler[nd]]=true;
         branch(nd+1,sack_space_left-W[shuffler[nd]],earned_money+V[shuffler[nd]]);
+    }
+}
+
+void bb::greedy_extention(){
+    ll used_space=0;
+    for(int i=0;i<n;i++) used_space+=in_bag[i]*W[i];
+
+    for(int i=0;i<n;i++) if(!in_bag[i]){
+        for(int j=0;j<n;j++) if(in_bag[j]){
+            if(used_space+W[i]-W[j] <= k and V[i]>V[j]){
+                used_space+=W[i]-W[j];
+                in_bag[i]=true;
+                in_bag[j]=false;
+                bst_val+=V[i]-V[j];
+                cout<<"happened"<<endl;
+            }
+        }
     }
 }
