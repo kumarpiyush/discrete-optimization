@@ -25,6 +25,7 @@ int main(int args, char** argv){
     vector<bool> selected;
 
     for(int ii=0;ii<30;ii++){
+        cerr<<"iteration : "<<ii<<endl;
         bb g1(n,k,W,V);
 
         auto s1=g1.solve();
@@ -37,7 +38,8 @@ int main(int args, char** argv){
             for(int i=0;i<n;i++){
                 cout<<selected[i]<<" ";
             }
-            printf("\n");
+            cout<<endl;
+            fflush(stdout);
         }
     }
 }

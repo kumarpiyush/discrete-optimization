@@ -1,4 +1,4 @@
-CC = g++-5 --std=c++11 -O3
+CC = g++-6 --std=c++11 -O3
 
 all : knapsack
 
